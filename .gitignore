@@ -1,0 +1,7 @@
+*.o
+/.vscode
+*.txt
+*.DS_Store
+*.a
+*.json
+*.xpm
