@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/22 19:52:04 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/23 18:25:46 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,17 @@
 # define WALL_IMAGE "textures/wall.xpm"
 # define PLAYER_IMAGE "textures/players-run-1.xpm"
 # define PLAYER_RUN_IMAGE "textures/players-run-2.xpm"
+# define PIXEL 32
 
 typedef struct s_gemedate
 {
 	void	*mlx;
-	void	*win;
+	void	*window;
 	void	*wall_img;
 	void	*player_img;
+	void	*space_img;
+	void	*collectible_img;
+	void	*exit_img;
 	int		width;
 	int		height;
 }	t_gamedate;
