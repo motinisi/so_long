@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/24 16:04:55 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/24 19:17:50 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,29 @@
 # define COLLECTIBLE_IMAGE "./textures/collectible.xpm"
 # define EXIT_IMAGE "./textures/exit.xpm"
 
-# define PIXEL 35
+// # define PIXEL 35
+# define PIXEL 85
+
+# if PIXEL == 85
+#  undef WALL_IMAGE
+#  undef PLAYER_IMAGE
+#  undef PLAYER_RUN_IMAGE
+#  undef EMPTY_IMAGE
+#  undef COLLECTIBLE_IMAGE
+#  undef EXIT_IMAGE
+#  define WALL_IMAGE "./textures/85wall.xpm"
+#  define PLAYER_IMAGE "./textures/85players-run-1.xpm"
+#  define PLAYER_RUN_IMAGE "./textures/85players-run-2.xpm"
+#  define EMPTY_IMAGE "./textures/85empty.xpm"
+#  define COLLECTIBLE_IMAGE "./textures/85collectible.xpm"
+#  define EXIT_IMAGE "./textures/85exit.xpm"
+# endif
+
+# define S_KEY 115
+# define A_KEY 97
+# define D_KEY 100
+# define W_KEY 119
+# define ESC 65307
 
 typedef struct s_gemedate
 {
@@ -46,13 +68,16 @@ typedef struct s_gemedate
 	void	*window;
 	void	*wall_img;
 	void	*player_img;
+	void	*player_run_img;
 	void	*space_img;
 	void	*collectible_img;
 	void	*exit_img;
-	// int		win_width;
-	// int		win_height;
 	int		width;
 	int		height;
+	char	**map;
+	int		player_y;
+	int		player_x;
+	int		count;
 }	t_gamedate;
 
 size_t	ft_strlen(const char *str);
