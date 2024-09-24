@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/23 19:04:01 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/24 16:05:14 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,29 @@ int	line_count(char *argv)
 }
 
 
-char	**read_map(int fd, char *argv)
+char	**read_map(char *argv)
 {
 	char	**map;
 	int		i;
 	int		line;
+	int		fd;
 
 	line = line_count(argv);
-	map = (char **)malloc(sizeof(char *) * line + 1);
-	if (map)
+	fd = open(argv, O_RDONLY);
+	map = (char **)malloc(sizeof(char *) * (line + 1));
+	if (!map)
 		return (NULL);
 	i = 0;
 	while (line)
 	{
 		map[i] = get_next_line(fd);
+		if (map[i] == NULL)
+		{
+			while (i > 0)
+				free(map[--i]);
+			free(map);
+			return (NULL);
+		}
 		i ++;
 		line --;
 	}
@@ -107,17 +116,26 @@ void	create_map(t_gamedate *date, char **map)
 int	main(int argc, char **argv)
 {
 	t_gamedate	date;
-	int			fd;
 	char		**map;
 
 	if (argc != 2)
 		error("argument error");
-	fd = open(argv[1], O_RDONLY);
-	map = read_map(fd, argv[1]);
+	map = read_map(argv[1]);
 	date.mlx = mlx_init();
-	date.window = mlx_new_window(date.mlx, 600, 400, "game");
-	//明日はここから始めよう
-	date.wall_img = mlx_xpm_file_to_image(date.mlx, "wall_image", )
-
+	date.window = mlx_new_window(date.mlx, 910, 350, "game");
+	date.wall_img = mlx_xpm_file_to_image(date.mlx, WALL_IMAGE,
+			&date.width, &date.height);
+	date.player_img = mlx_xpm_file_to_image(date.mlx, PLAYER_IMAGE,
+			&date.width, &date.height);
+	date.space_img = mlx_xpm_file_to_image(date.mlx, EMPTY_IMAGE,
+			&date.width, &date.height);
+	date.collectible_img = mlx_xpm_file_to_image(date.mlx, COLLECTIBLE_IMAGE,
+			&date.width, &date.height);
+	date.exit_img = mlx_xpm_file_to_image(date.mlx, EXIT_IMAGE,
+			&date.width, &date.height);
+	// printf("main is ok so far\n");
+	create_map(&date, map);
+	mlx_loop(date.mlx);
+	// mlx_hook(win, 17, 0, close_window, NULL);
 	return (0);
 }

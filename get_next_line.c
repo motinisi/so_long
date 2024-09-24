@@ -6,11 +6,11 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:25:42 by timanish          #+#    #+#             */
-/*   Updated: 2024/07/03 20:18:42 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:39:05 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 char	*connect_buf(int fd, char *buf, char *save_buf)
 {

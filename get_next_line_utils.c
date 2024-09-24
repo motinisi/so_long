@@ -6,11 +6,11 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:44:29 by timanish          #+#    #+#             */
-/*   Updated: 2024/06/12 17:18:43 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/24 14:39:15 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "so_long.h"
 
 size_t	ft_strlen(const char *str)
 {
