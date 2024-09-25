@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:58 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 15:40:53 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/25 16:41:29 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**read_map(char *argv, t_mapdate *date)
 	int		line;
 	int		fd;
 
-	line = line_count(argv);
+	line = line_count(argv, date);
 	date->height = line;
 	fd = open(argv, O_RDONLY);
 	map = (char **)malloc(sizeof(char *) * (line + 1));

@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 15:45:37 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/25 17:09:39 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_mapdate
 	int		width;
 	int		height;
 	char	**map;
+	int		collect_item;
 	int		player_y;
 	int		player_x;
 	int		movecount;
@@ -96,7 +97,7 @@ char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 char	*save_check(char *save_buf, char *buf);
 void	error(char *message);
-int		line_count(char *argv);
+int		line_count(char *argv, t_mapdate *date);
 void	free_map(char **map);
 char	**read_map(char *argv, t_mapdate *date);
 void	read_image(t_mapdate *date);

@@ -6,7 +6,7 @@
 #    By: timanish <timanish@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 15:37:03 by timanish          #+#    #+#              #
-#    Updated: 2024/09/25 15:48:58 by timanish         ###   ########.fr        #
+#    Updated: 2024/09/25 18:28:36 by timanish         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,9 @@ INCLUDES = -I includes
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C "ft_printf"
 	@make -C "libft"
 	@make -C "minilibx-linux"
-	$(CC) -o $(NAME) $(OBJS) ft_printf/libftprintf.a libft/libft.a minilibx-linux/libmlx.a -lX11 -lXext -lm
+	$(CC) -o $(NAME) $(OBJS) libft/libft.a minilibx-linux/libmlx.a -lX11 -lXext -lm
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@ $(INCLUDES)
@@ -38,13 +37,11 @@ $(NAME): $(OBJS)
 clean:
 	rm -f $(OBJS)
 	@make -C "libft" clean
-	@make -C "ft_printf" clean
 	@make -C "minilibx-linux" clean
 
 fclean: clean
 	rm -f $(NAME)
 	@make -C "libft" fclean
-	@make -C "ft_printf" fclean
 	@make -C "minilibx-linux" clean
 
 re: fclean all

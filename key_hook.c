@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 15:45:01 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:27:57 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,40 @@ void	key_hook_x(int keycode, t_mapdate *date)
 	}
 }
 
+void	itemcollect(t_mapdate *date)
+{
+	char	**map;
+	int		y;
+	int		x;
+
+	map = date->map;
+	y = date->player_y;
+	x = date->player_x;
+	if (map[y][x] == 'C')
+	{
+		date->collect_item -= 1;
+		map[y][x] = '0';
+		printf ("key_hook.c   collect%d\n", date->collect_item);
+	}
+}
+
+void	exit_game(t_mapdate *date)
+{
+	int	item;
+	int	y;
+	int	x;
+
+	item = date->collect_item;
+	y = date->player_y;
+	x = date->player_x;
+	if (date->map[y][x] == 'E' && item == 0)
+	{
+		write (1, "game clear\n", 11);
+		free_map(date->map);
+		exit(0);
+	}
+}
+
 int	keyboard_hook(int keycode, t_mapdate *date)
 {
 	if (keycode == ESC)
@@ -63,14 +97,16 @@ int	keyboard_hook(int keycode, t_mapdate *date)
 		key_hook_y(keycode, date);
 	else if (keycode == A_KEY || keycode == D_KEY)
 		key_hook_x(keycode, date);
+	itemcollect(date);
+	exit_game(date);
 	mlx_clear_window(date->mlx, date->window);
 	create_map(date, date->map);
 	if (date->movecount % 2 == 0)
-		mlx_put_image_to_window(date->mlx, date->window,
-			date->player_img, date->player_x * PIXEL, date->player_y * PIXEL);
-	else
 		mlx_put_image_to_window(date->mlx, date->window, date->player_run_img,
 			date->player_x * PIXEL, date->player_y * PIXEL);
-	printf("count : %d\n", date->movecount);
+	else
+		mlx_put_image_to_window(date->mlx, date->window, date->player_img,
+			date->player_x * PIXEL, date->player_y * PIXEL);
+	printf("key_hook.c  count : %d\n", date->movecount);
 	return (0);
 }

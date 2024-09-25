@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 15:48:03 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:30:19 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	main(int argc, char **argv)
 	read_image(&date);
 	player_coordinate(&date);
 	create_map(&date, date.map);
-	printf("movecount : %d\n", date.movecount);
+	printf ("collect:%d\n", date.collect_item);
 	mlx_put_image_to_window(date.mlx, date.window,
-		date.player_img, date.player_x * PIXEL, date.player_y * PIXEL);
+		date.player_run_img, date.player_x * PIXEL, date.player_y * PIXEL);
 	mlx_key_hook(date.window, keyboard_hook, &date);
 	mlx_loop(date.mlx);
 	free_map(date.map);
