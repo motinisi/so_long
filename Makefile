@@ -6,7 +6,7 @@
 #    By: timanish <timanish@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 15:37:03 by timanish          #+#    #+#              #
-#    Updated: 2024/09/24 15:11:18 by timanish         ###   ########.fr        #
+#    Updated: 2024/09/25 15:48:58 by timanish         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,11 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = so_long
 SRCS = main.c\
+		so_long_utils.c\
 		get_next_line.c\
 		get_next_line_utils.c\
+		create_screen.c\
+		key_hook.c\
 
 OBJS = $(SRCS:.c=.o)
 
