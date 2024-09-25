@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/24 19:19:26 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/25 14:19:20 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ int	line_count(char *argv)
 	return (line);
 }
 
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i ++;
+	}
+	free(map);
+}
 
 char	**read_map(char *argv, t_gamedate *date)
 {
@@ -64,12 +76,7 @@ char	**read_map(char *argv, t_gamedate *date)
 	{
 		map[i] = get_next_line(fd);
 		if (map[i] == NULL)
-		{
-			while (i > 0)
-				free(map[--i]);
-			free(map);
-			return (NULL);
-		}
+			return (free_map(map), NULL);
 		i ++;
 		line --;
 	}
@@ -108,9 +115,6 @@ void	drew_img(t_gamedate *date, char map, int x, int y)
 	else if (map == 'E')
 		mlx_put_image_to_window(date->mlx, date->window,
 			date->exit_img, x * PIXEL, y * PIXEL);
-	// else if (map == 'P')
-	// 	mlx_put_image_to_window(date->mlx, date->window,
-	// 		date->player_img, x * PIXEL, y * PIXEL);
 }
 
 void	create_map(t_gamedate *date, char **map)
@@ -236,5 +240,6 @@ int	main(int argc, char **argv)
 		date.player_img, date.player_x * PIXEL, date.player_y * PIXEL);
 	mlx_key_hook(date.window, keyboard_hook, &date);
 	mlx_loop(date.mlx);
+	free_map(date.map);
 	return (0);
 }
