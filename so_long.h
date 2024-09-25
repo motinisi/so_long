@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 17:09:39 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/25 19:34:35 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <errno.h>
 # include "minilibx-linux/mlx.h"
+# include "libft/libft.h"
 
 
 # ifndef BUFFER_SIZE
@@ -81,6 +82,14 @@ typedef struct s_mapdate
 	int		movecount;
 }	t_mapdate;
 
+typedef struct s_angle
+{
+	int	left_y;
+	int	left_x;
+	int	right_y;
+	int	right_x;
+}	t_angle;
+
 // typedef struct s_playerdate
 // {
 // 	int	player_y;
@@ -89,7 +98,7 @@ typedef struct s_mapdate
 // }	t_playerdate;
 
 size_t	ft_strlen(const char *str);
-char	*ft_strdup(char *src);
+// char	*ft_strdup(char *src);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*connect_buf(int fd, char *buf, char *save_buf);
 char	*result_buf(char *save_buf, size_t i, char *re_buf);

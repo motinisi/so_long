@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:44:29 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/24 14:39:15 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:59:32 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,6 @@ size_t	ft_strlen(const char *str)
 	while (str[i])
 		i ++;
 	return (i);
-}
-
-char	*ft_strdup(char *src)
-{
-	size_t	size;
-	char	*dup;
-	int		i;
-
-	size = ft_strlen(src);
-	dup = (char *)malloc(size + 1);
-	i = 0;
-	if (!dup)
-		return (NULL);
-	while (src[i])
-	{
-		dup[i] = src[i];
-		i ++;
-	}
-	dup[i] = '\0';
-	return (dup);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
