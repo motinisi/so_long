@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 16:08:17 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:31:34 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 #  undef BUFFER_SIZE
 #  define BUFFER_SIZE 0
 # endif
+
+# define WIN_HEIGHT_MAX 24
+# define WIN_WIDTH_MAX 96
 
 # define WALL_IMAGE "./textures/wall.xpm"
 # define PLAYER_IMAGE "./textures/players-run-1.xpm"
@@ -88,15 +91,7 @@ typedef struct s_mapcheck
 	int	exit_count;
 }	t_mapcheck;
 
-// typedef struct s_playerdata
-// {
-// 	int	player_y;
-// 	int	player_x;
-// 	int	move_count;
-// }	t_playerdata;
-
 size_t	ft_strlen(const char *str);
-// char	*ft_strdup(char *src);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*connect_buf(int fd, char *buf, char *save_buf);
 char	*result_buf(char *save_buf, size_t i, char *re_buf);
@@ -114,5 +109,10 @@ void	key_hook_y(int keycode, t_mapdata *data);
 void	key_hook_x(int keycode, t_mapdata *data);
 int		keyboard_hook(int keycode, t_mapdata *data);
 int		rows_len(char *str);
-
+void	free_and_error(char **map, char *message);
+void	arg_cheak(int argc, char **argv);
+void	collect_check(t_mapdata *data, t_mapcheck *check, int x, int y);
+void	return_map(t_mapdata *data);
+int		form_check(t_mapdata data);
+void	map_check(t_mapdata *data, int x, int y);
 #endif

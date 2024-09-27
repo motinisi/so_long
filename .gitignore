@@ -5,3 +5,6 @@
 *.a
 *.json
 *.xpm
+test.c
+test1.c
+test_readmap.c

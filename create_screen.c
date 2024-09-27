@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:58 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 15:40:29 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/27 18:56:22 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ char	**read_map(char *argv, t_mapdata *data)
 	if (!map)
 		return (NULL);
 	i = 0;
+	printf("create_screen line : %d\n", line);
 	while (line)
 	{
 		map[i] = get_next_line(fd);
+		printf("get_next_line : %d\n", i);
 		if (map[i] == NULL)
-			return (free_map(map), NULL);
+			free_and_error(map, "creat map error");
 		i ++;
 		line --;
 	}

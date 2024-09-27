@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:47:22 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 16:07:33 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:25:12 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@ void	error(char *message)
 	exit (1);
 }
 
-int	line_count(char *argv, t_mapdata *data)
-{
-	int		fd;
-	char	buffer;
-	int		line;
-
-	line = 1;
-	fd = open(argv, O_RDONLY);
-	data->collect_item = 0;
-	while (read(fd, &buffer, 1) > 0)
-	{
-		if (buffer == '\n')
-			line ++;
-		else if (buffer == 'C')
-			data->collect_item += 1;
-	}
-	close (fd);
-	return (line);
-}
-
 void	free_map(char **map)
 {
 	int	i;
@@ -52,6 +32,35 @@ void	free_map(char **map)
 		i ++;
 	}
 	free(map);
+}
+
+void	free_and_error(char **map, char *message)
+{
+	free_map(map);
+	error(message);
+}
+
+int	line_count(char *argv, t_mapdata *data)
+{
+	int		fd;
+	char	buffer;
+	int		line;
+
+	line = 1;
+	printf("argv[1] ; %s\n", argv);
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		error("not file");
+	data->collect_item = 0;
+	while (read(fd, &buffer, 1) > 0)
+	{
+		if (buffer == '\n')
+			line ++;
+		else if (buffer == 'C')
+			data->collect_item += 1;
+	}
+	close (fd);
+	return (line);
 }
 
 int	rows_len(char *str)
