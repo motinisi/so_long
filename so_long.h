@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 19:34:35 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:08:17 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define W_KEY 119
 # define ESC 65307
 
-typedef struct s_mapdate
+typedef struct s_mapdata
 {
 	void	*mlx;
 	void	*window;
@@ -73,29 +73,27 @@ typedef struct s_mapdate
 	void	*space_img;
 	void	*collectible_img;
 	void	*exit_img;
-	int		width;
-	int		height;
+	int		cols;
+	int		rows;
 	char	**map;
 	int		collect_item;
 	int		player_y;
 	int		player_x;
 	int		movecount;
-}	t_mapdate;
+}	t_mapdata;
 
-typedef struct s_angle
+typedef struct s_mapcheck
 {
-	int	left_y;
-	int	left_x;
-	int	right_y;
-	int	right_x;
-}	t_angle;
+	int	collect_count;
+	int	exit_count;
+}	t_mapcheck;
 
-// typedef struct s_playerdate
+// typedef struct s_playerdata
 // {
 // 	int	player_y;
 // 	int	player_x;
 // 	int	move_count;
-// }	t_playerdate;
+// }	t_playerdata;
 
 size_t	ft_strlen(const char *str);
 // char	*ft_strdup(char *src);
@@ -106,14 +104,15 @@ char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 char	*save_check(char *save_buf, char *buf);
 void	error(char *message);
-int		line_count(char *argv, t_mapdate *date);
+int		line_count(char *argv, t_mapdata *data);
 void	free_map(char **map);
-char	**read_map(char *argv, t_mapdate *date);
-void	read_image(t_mapdate *date);
-void	drew_img(t_mapdate *date, char map, int x, int y);
-void	create_map(t_mapdate *date, char **map);
-void	key_hook_y(int keycode, t_mapdate *date);
-void	key_hook_x(int keycode, t_mapdate *date);
-int		keyboard_hook(int keycode, t_mapdate *date);
+char	**read_map(char *argv, t_mapdata *data);
+void	read_image(t_mapdata *data);
+void	drew_img(t_mapdata *data, char map, int x, int y);
+void	create_map(t_mapdata *data, char **map);
+void	key_hook_y(int keycode, t_mapdata *data);
+void	key_hook_x(int keycode, t_mapdata *data);
+int		keyboard_hook(int keycode, t_mapdata *data);
+int		rows_len(char *str);
 
 #endif

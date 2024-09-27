@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:47:22 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 17:50:56 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/27 16:07:33 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	error(char *message)
 {
-	printf("%s\n", message);
+	int	byte;
+
+	byte = ft_strlen(message);
+	write (2, message, byte);
 	exit (1);
 }
 
-int	line_count(char *argv, t_mapdate *date)
+int	line_count(char *argv, t_mapdata *data)
 {
 	int		fd;
 	char	buffer;
@@ -26,13 +29,13 @@ int	line_count(char *argv, t_mapdate *date)
 
 	line = 1;
 	fd = open(argv, O_RDONLY);
-	date->collect_item = 0;
+	data->collect_item = 0;
 	while (read(fd, &buffer, 1) > 0)
 	{
 		if (buffer == '\n')
 			line ++;
 		else if (buffer == 'C')
-			date->collect_item += 1;
+			data->collect_item += 1;
 	}
 	close (fd);
 	return (line);
@@ -49,4 +52,14 @@ void	free_map(char **map)
 		i ++;
 	}
 	free(map);
+}
+
+int	rows_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	while ((str[i] != '\n') && (str[i] != '\0'))
+		i ++;
+	return (i);
 }

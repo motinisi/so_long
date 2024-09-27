@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:25:42 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/24 14:39:05 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:56:29 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*connect_buf(int fd, char *buf, char *save_buf)
 			return (free (save_buf), free (buf), NULL);
 		free (save_buf);
 		save_buf = join_buf;
-		if (ft_strchr(save_buf, '\n') > 0)
+		if (ft_strchr(save_buf, '\n') != NULL)
 			break ;
 	}
 	free (buf);
