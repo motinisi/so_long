@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 19:48:20 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:59:34 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	main(int argc, char **argv)
 			data.cols * PIXEL, "game");
 	read_image(&data);
 	create_map(&data, data.map);
-	// mlx_put_image_to_window(data.mlx, data.window,
-	// 	data.player_run_img, data.player_x * PIXEL, data.player_y * PIXEL);
+	mlx_put_image_to_window(data.mlx, data.window,
+		data.player_run_img, data.player_x * PIXEL, data.player_y * PIXEL);
 	mlx_key_hook(data.window, keyboard_hook, &data);
 	mlx_loop(data.mlx);
 	free_map(data.map);

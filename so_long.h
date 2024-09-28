@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 19:31:34 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:52:15 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ typedef struct s_mapcheck
 	int	collect_count;
 	int	exit_count;
 }	t_mapcheck;
+
+typedef struct s_spaceimg
+{
+	int	space_y;
+	int	space_x;
+}	t_spaceimg;
 
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);

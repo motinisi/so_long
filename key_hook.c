@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 13:00:14 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/28 13:58:41 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,21 @@ void	exit_game(t_mapdata *data)
 	}
 }
 
+void	replace_space(t_mapdata *data)
+{
+	t_spaceimg	*space;
+
+	space = (t_spaceimg *)malloc(sizeof(t_spaceimg));
+	space->space_y = data->player_y;
+	space->space_x = data->player_x;
+	mlx_put_image_to_window(data->mlx, data->window, data->space_img,
+		space->space_x * PIXEL, space->space_y * PIXEL);
+	free(space);
+}
+
 int	keyboard_hook(int keycode, t_mapdata *data)
 {
+	replace_space(data);
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(data->mlx, data->window);
@@ -99,8 +112,8 @@ int	keyboard_hook(int keycode, t_mapdata *data)
 		key_hook_x(keycode, data);
 	itemcollect(data);
 	exit_game(data);
-	mlx_clear_window(data->mlx, data->window);
-	create_map(data, data->map);
+	// mlx_clear_window(data->mlx, data->window);
+	// create_map(data, data->map);
 	if (data->movecount % 2 == 0)
 		mlx_put_image_to_window(data->mlx, data->window, data->player_run_img,
 			data->player_x * PIXEL, data->player_y * PIXEL);

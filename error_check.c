@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:24:32 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 19:27:06 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/27 20:01:50 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	arg_cheak(int argc, char **argv)
 		error("argument error\n");
 	if (ft_strncmp(argv[1] + (ft_strlen(argv[1]) - 4), ".ber", 5))
 		error("map must be '.ber'\n");
+	// if (argv[1] == ".ber")
 }
 
 void	collect_check(t_mapdata *data, t_mapcheck *check, int x, int y)
