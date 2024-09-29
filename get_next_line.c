@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 16:25:42 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 18:16:37 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/29 13:58:56 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*save_check(char *save_buf, char *buf)
 	if (!buf)
 		return (NULL);
 	if (!save_buf)
-		save_buf = ft_strdup("");	
+		save_buf = ft_strdup("");
 	if (!save_buf)
 		return (free (buf), NULL);
 	return (save_buf);

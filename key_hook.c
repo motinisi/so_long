@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/28 13:58:41 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/29 11:46:59 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,6 @@ void	itemcollect(t_mapdata *data)
 	}
 }
 
-void	exit_game(t_mapdata *data)
-{
-	int	item;
-	int	y;
-	int	x;
-
-	item = data->collect_item;
-	y = data->player_y;
-	x = data->player_x;
-	if (data->map[y][x] == 'E' && item == 0)
-	{
-		write (1, "game clear\n", 11);
-		free_map(data->map);
-		exit(0);
-	}
-}
-
 void	replace_space(t_mapdata *data)
 {
 	t_spaceimg	*space;
@@ -93,8 +76,12 @@ void	replace_space(t_mapdata *data)
 	space = (t_spaceimg *)malloc(sizeof(t_spaceimg));
 	space->space_y = data->player_y;
 	space->space_x = data->player_x;
-	mlx_put_image_to_window(data->mlx, data->window, data->space_img,
-		space->space_x * PIXEL, space->space_y * PIXEL);
+	if (data->map[data->player_y][data->player_x] == 'E')
+		mlx_put_image_to_window(data->mlx, data->window, data->exit_img,
+			space->space_x * PIXEL, space->space_y * PIXEL);
+	else
+		mlx_put_image_to_window(data->mlx, data->window, data->space_img,
+			space->space_x * PIXEL, space->space_y * PIXEL);
 	free(space);
 }
 
@@ -112,8 +99,6 @@ int	keyboard_hook(int keycode, t_mapdata *data)
 		key_hook_x(keycode, data);
 	itemcollect(data);
 	exit_game(data);
-	// mlx_clear_window(data->mlx, data->window);
-	// create_map(data, data->map);
 	if (data->movecount % 2 == 0)
 		mlx_put_image_to_window(data->mlx, data->window, data->player_run_img,
 			data->player_x * PIXEL, data->player_y * PIXEL);

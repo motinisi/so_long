@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/28 13:52:15 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/29 13:53:23 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ void	free_and_error(char **map, char *message);
 void	arg_cheak(int argc, char **argv);
 void	collect_check(t_mapdata *data, t_mapcheck *check, int x, int y);
 void	return_map(t_mapdata *data);
-int		form_check(t_mapdata data);
+int		shape_check(t_mapdata data);
 void	map_check(t_mapdata *data, int x, int y);
+void	check_hidden(char *argv);
+void	exit_game(t_mapdata *data);
 #endif

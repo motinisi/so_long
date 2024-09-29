@@ -6,7 +6,7 @@
 #    By: timanish <timanish@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 15:37:03 by timanish          #+#    #+#              #
-#    Updated: 2024/09/28 13:04:33 by timanish         ###   ########.fr        #
+#    Updated: 2024/09/28 18:04:46 by timanish         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS = main.c\
 		create_screen.c\
 		key_hook.c\
 		error_check.c\
+		error_utils.c\
 
 OBJS = $(SRCS:.c=.o)
 

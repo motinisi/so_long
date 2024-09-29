@@ -6,39 +6,11 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:47:22 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/27 19:25:12 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/29 11:47:16 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	error(char *message)
-{
-	int	byte;
-
-	byte = ft_strlen(message);
-	write (2, message, byte);
-	exit (1);
-}
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i ++;
-	}
-	free(map);
-}
-
-void	free_and_error(char **map, char *message)
-{
-	free_map(map);
-	error(message);
-}
 
 int	line_count(char *argv, t_mapdata *data)
 {
@@ -71,4 +43,21 @@ int	rows_len(char *str)
 	while ((str[i] != '\n') && (str[i] != '\0'))
 		i ++;
 	return (i);
+}
+
+void	exit_game(t_mapdata *data)
+{
+	int	item;
+	int	y;
+	int	x;
+
+	item = data->collect_item;
+	y = data->player_y;
+	x = data->player_x;
+	if (data->map[y][x] == 'E' && item == 0)
+	{
+		write (1, "game clear\n", 11);
+		free_map(data->map);
+		exit(0);
+	}
 }
