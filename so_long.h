@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 13:53:23 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:54:23 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,6 @@ int		shape_check(t_mapdata data);
 void	map_check(t_mapdata *data, int x, int y);
 void	check_hidden(char *argv);
 void	exit_game(t_mapdata *data);
+void	wall_rows_check(t_mapdata *data);
+void	wall_cols_check(t_mapdata *data);
 #endif

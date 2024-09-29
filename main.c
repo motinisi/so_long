@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 13:57:19 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/29 15:13:47 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	player_coordinate(t_mapdata *data)
 {
 	int	x;
 	int	y;
+	int	count;
 
+	count = 0;
 	y = 0;
 	while (data->map[y] != NULL)
 	{
@@ -27,12 +29,14 @@ int	player_coordinate(t_mapdata *data)
 			{
 				data->player_x = x;
 				data->player_y = y;
-				return (0);
+				count += 1;
 			}
 			x ++;
 		}
 		y ++;
 	}
+	if (count == 1)
+		return (0);
 	return (1);
 }
 
@@ -44,7 +48,7 @@ int	main(int argc, char **argv)
 	data.movecount = 0;
 	data.map = read_map(argv[1], &data);
 	if (player_coordinate(&data))
-		free_and_error(data.map, "NO players\n");
+		free_and_error(data.map, "player incorrect\n");
 	if (data.cols > WIN_HEIGHT_MAX || data.rows > WIN_WIDTH_MAX)
 		free_and_error(data.map, "map is so big!\n");
 	map_check(&data, data.player_x, data.player_y);
