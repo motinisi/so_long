@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:24:32 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 13:50:54 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:53:48 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,6 @@ void	collect_check(t_mapdata *data, t_mapcheck *check, int x, int y)
 	collect_check(data, check, x, y - 1);
 }
 
-void	return_map(t_mapdata *data)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (data->map[y] != NULL)
-	{
-		x = 0;
-		while (data->map[y][x] != '\0')
-		{
-			if (data->map[y][x] == 'c')
-				data->map[y][x] = 'C';
-			else if (data->map[y][x] == 'e')
-				data->map[y][x] = 'E';
-			else if (data->map[y][x] == '*')
-				data->map[y][x] = '0';
-			x ++;
-		}
-		y ++;
-	}
-}
-
 int	shape_check(t_mapdata data)
 {
 	int	i;
@@ -85,22 +62,42 @@ int	shape_check(t_mapdata data)
 	return (0);
 }
 
-void	map_check(t_mapdata *data, int x, int y)
+void	wall_rows_check(t_mapdata *data)
 {
-	t_mapcheck	*check;
-	int			frag;
+	char	*fst_rows;
+	char	*last_rows;
 
-	check = (t_mapcheck *)malloc(sizeof(t_mapcheck));
-	frag = shape_check(*data);
-	check->collect_count = 0;
-	check->exit_count = 0;
-	collect_check(data, check, x, y);
-	return_map(data);
-	if ((data->collect_item != check->collect_count) || check->exit_count != 1)
-		frag = 2;
-	free(check);
-	if (frag == 1)
-		error("map shape incorrect");
-	if (frag == 2)
-		error("characters incorrect");
+	fst_rows = data->map[0];
+	while (*fst_rows != '\n')
+	{
+		if (*fst_rows != '1')
+			free_and_error(data->map, "wall incorrect\n");
+		fst_rows ++;
+	}
+	last_rows = data->map[data->cols - 1];
+	while (*last_rows)
+	{
+		if (*last_rows != '1')
+			free_and_error(data->map, "wall incorrect\n");
+		last_rows ++;
+	}
 }
+
+void	wall_cols_check(t_mapdata *data)
+{
+	int	i;
+
+	i = data->cols;
+	while (--i >= 0)
+	{
+		if (data->map[i][0] != '1')
+			free_and_error(data->map, "wall incorrect\n");
+	}
+	i = data->cols;
+	while (--i >= 0)
+	{
+		if (data->map[i][data->rows - 1] != '1')
+			free_and_error(data->map, "wall incorrect\n");
+	}
+}
+

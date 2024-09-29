@@ -6,12 +6,11 @@
 #    By: timanish <timanish@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 15:37:03 by timanish          #+#    #+#              #
-#    Updated: 2024/09/28 18:04:46 by timanish         ###   ########.fr        #
+#    Updated: 2024/09/29 14:41:23 by timanish         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# CC = cc
-CC = clang
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = so_long
 SRCS = main.c\
