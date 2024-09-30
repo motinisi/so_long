@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:44:29 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/25 18:59:32 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:13:54 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		n;
 
 	join = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	i = -1;
-	n = 0;
 	if (!join)
 		return (NULL);
+	i = -1;
+	n = 0;
 	while (s1[++i])
 		join[i] = s1[i];
 	while (s2[n])

@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 18:04:33 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 16:19:50 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:59:55 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@ void	check_hidden(char *argv)
 		filename++;
 	if (filename[0] == '.')
 		error("file error\n");
+}
+
+int	close_window(char **map)
+{
+	free_map(map);
+	exit(0);
 }

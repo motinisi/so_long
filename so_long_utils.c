@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:47:22 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 16:53:38 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:24:02 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	line_count(char *argv, t_mapdata *data)
 	int		line;
 
 	line = 1;
-	printf("argv[1] ; %s\n", argv);
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
 		error("not file");
@@ -91,6 +90,8 @@ void	map_check(t_mapdata *data, int x, int y)
 	int			frag;
 
 	check = (t_mapcheck *)malloc(sizeof(t_mapcheck));
+	if (!check)
+		free_and_error(data->map, "malloc failed\n");
 	frag = shape_check(*data);
 	check->collect_count = 0;
 	check->exit_count = 0;

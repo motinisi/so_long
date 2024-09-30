@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 16:54:23 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:00:07 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,4 +125,5 @@ void	check_hidden(char *argv);
 void	exit_game(t_mapdata *data);
 void	wall_rows_check(t_mapdata *data);
 void	wall_cols_check(t_mapdata *data);
+int		close_window(char **map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 11:46:59 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:19:23 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ void	replace_space(t_mapdata *data)
 	t_spaceimg	*space;
 
 	space = (t_spaceimg *)malloc(sizeof(t_spaceimg));
+	if (!space)
+		free_and_error(data->map, "malloc failed\n");
 	space->space_y = data->player_y;
 	space->space_x = data->player_x;
 	if (data->map[data->player_y][data->player_x] == 'E')

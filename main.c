@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/29 15:13:47 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:23:04 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(int argc, char **argv)
 	arg_cheak(argc, argv);
 	data.movecount = 0;
 	data.map = read_map(argv[1], &data);
+	if (!data.map)
+		error("read failed\n");
 	if (player_coordinate(&data))
 		free_and_error(data.map, "player incorrect\n");
 	if (data.cols > WIN_HEIGHT_MAX || data.rows > WIN_WIDTH_MAX)
@@ -60,6 +62,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(data.mlx, data.window,
 		data.player_run_img, data.player_x * PIXEL, data.player_y * PIXEL);
 	mlx_key_hook(data.window, keyboard_hook, &data);
+	mlx_hook(data.window, 17, 0, close_window, data.map);
 	mlx_loop(data.mlx);
 	free_map(data.map);
 	return (0);
