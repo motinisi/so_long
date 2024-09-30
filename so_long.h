@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/30 15:00:07 by timanish         ###   ########.fr       */
+/*   Updated: 2024/09/30 15:46:11 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # endif
 
 # define WIN_HEIGHT_MAX 24
-# define WIN_WIDTH_MAX 96
+# define WIN_WIDTH_MAX 45
 
 # define WALL_IMAGE "./textures/wall.xpm"
 # define PLAYER_IMAGE "./textures/players-run-1.xpm"
@@ -43,6 +43,7 @@
 # define EXIT_IMAGE "./textures/exit.xpm"
 
 // # define PIXEL 35
+// # define PIXEL 50
 # define PIXEL 85
 
 # if PIXEL == 85
@@ -58,6 +59,25 @@
 #  define EMPTY_IMAGE "./textures/85empty.xpm"
 #  define COLLECTIBLE_IMAGE "./textures/85collectible.xpm"
 #  define EXIT_IMAGE "./textures/85exit.xpm"
+# endif
+
+# if PIXEL == 50
+#  undef WALL_IMAGE
+#  undef PLAYER_IMAGE
+#  undef PLAYER_RUN_IMAGE
+#  undef EMPTY_IMAGE
+#  undef COLLECTIBLE_IMAGE
+#  undef EXIT_IMAGE
+#  undef WIN_HEIGHT_MAX
+#  undef WIN_WIDTH_MAX
+#  define WALL_IMAGE "./textures/50wall.xpm"
+#  define PLAYER_IMAGE "./textures/50run2.xpm"
+#  define PLAYER_RUN_IMAGE "./textures/50run1.xpm"
+#  define EMPTY_IMAGE "./textures/50empty.xpm"
+#  define COLLECTIBLE_IMAGE "./textures/50collectible.xpm"
+#  define EXIT_IMAGE "./textures/50exit.xpm"
+#  define WIN_HEIGHT_MAX 42
+#  define WIN_WIDTH_MAX 77
 # endif
 
 # define S_KEY 115
