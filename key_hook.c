@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/30 15:19:23 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/06 15:13:37 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	replace_space(t_mapdata *data)
 
 	space = (t_spaceimg *)malloc(sizeof(t_spaceimg));
 	if (!space)
-		free_and_error(data->map, "malloc failed\n");
+		free_and_error(data, "malloc failed\n");
 	space->space_y = data->player_y;
 	space->space_x = data->player_x;
 	if (data->map[data->player_y][data->player_x] == 'E')
@@ -92,7 +92,9 @@ int	keyboard_hook(int keycode, t_mapdata *data)
 	replace_space(data);
 	if (keycode == ESC)
 	{
-		mlx_destroy_window(data->mlx, data->window);
+		// destroy_image(data);
+		// mlx_destroy_window(data->mlx, data->window);
+		all_free(data);
 		exit (0);
 	}
 	else if (keycode == W_KEY || keycode == S_KEY)

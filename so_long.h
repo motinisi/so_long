@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/30 15:46:11 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:27:13 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4
+#  define BUFFER_SIZE 5
 # endif
 
 # if BUFFER_SIZE > 2147483646 || BUFFER_SIZE < 0
@@ -43,8 +43,8 @@
 # define EXIT_IMAGE "./textures/exit.xpm"
 
 // # define PIXEL 35
-// # define PIXEL 50
-# define PIXEL 85
+# define PIXEL 50
+// # define PIXEL 85
 
 # if PIXEL == 85
 #  undef WALL_IMAGE
@@ -103,6 +103,7 @@ typedef struct s_mapdata
 	int		player_y;
 	int		player_x;
 	int		movecount;
+	int		pixel;
 }	t_mapdata;
 
 typedef struct s_mapcheck
@@ -135,7 +136,7 @@ void	key_hook_y(int keycode, t_mapdata *data);
 void	key_hook_x(int keycode, t_mapdata *data);
 int		keyboard_hook(int keycode, t_mapdata *data);
 int		rows_len(char *str);
-void	free_and_error(char **map, char *message);
+void	free_and_error(t_mapdata *data, char *message);
 void	arg_cheak(int argc, char **argv);
 void	collect_check(t_mapdata *data, t_mapcheck *check, int x, int y);
 void	return_map(t_mapdata *data);
@@ -146,4 +147,7 @@ void	exit_game(t_mapdata *data);
 void	wall_rows_check(t_mapdata *data);
 void	wall_cols_check(t_mapdata *data);
 int		close_window(char **map);
+void	all_free(t_mapdata *data);
+void	destroy_image(t_mapdata *data);
+void	map_free_and_error(char **map, char*message);
 #endif

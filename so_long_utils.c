@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:47:22 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/30 15:24:02 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/06 17:10:54 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ void	exit_game(t_mapdata *data)
 	if (data->map[y][x] == 'E' && item == 0)
 	{
 		write (1, "game clear\n", 11);
-		free_map(data->map);
+		all_free(data);
 		exit(0);
 	}
 }
 
-void	return_map(t_mapdata *data)
+void	repair_map(t_mapdata *data)
 {
 	int	x;
 	int	y;
@@ -91,20 +91,20 @@ void	map_check(t_mapdata *data, int x, int y)
 
 	check = (t_mapcheck *)malloc(sizeof(t_mapcheck));
 	if (!check)
-		free_and_error(data->map, "malloc failed\n");
+		free_and_error(data, "malloc failed\n");
 	frag = shape_check(*data);
+	if (frag == 1)
+		map_free_and_error(data->map, "map shape incorrect\n");
+	if (frag == 2)
+		map_free_and_error(data->map, "characters incorrect\n");
 	check->collect_count = 0;
 	check->exit_count = 0;
 	wall_rows_check(data);
 	wall_cols_check(data);
 	collect_check(data, check, x, y);
-	return_map(data);
+	repair_map(data);
 	if ((data->collect_item != check->collect_count)
 		|| check->exit_count != 1 || check->collect_count == 0)
 		frag = 2;
 	free(check);
-	if (frag == 1)
-		error("map shape incorrect");
-	if (frag == 2)
-		error("characters incorrect");
 }

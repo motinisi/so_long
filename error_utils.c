@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 18:04:33 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/30 14:59:55 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:12:50 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,6 @@ void	error(char *message)
 	write (2, "Error\n", 6);
 	write (2, message, byte);
 	exit (1);
-}
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i ++;
-	}
-	free(map);
-}
-
-void	free_and_error(char **map, char *message)
-{
-	free_map(map);
-	error(message);
 }
 
 void	check_hidden(char *argv)

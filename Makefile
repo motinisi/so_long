@@ -6,12 +6,12 @@
 #    By: timanish <timanish@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 15:37:03 by timanish          #+#    #+#              #
-#    Updated: 2024/09/29 14:41:23 by timanish         ###   ########.fr        #
+#    Updated: 2024/10/06 15:40:43 by timanish         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = #-Wall -Wextra -Werror -g
 NAME = so_long
 SRCS = main.c\
 		so_long_utils.c\
@@ -21,6 +21,7 @@ SRCS = main.c\
 		key_hook.c\
 		error_check.c\
 		error_utils.c\
+		free.c\
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:58 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/30 15:22:21 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/06 16:52:34 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,29 @@ char	**read_map(char *argv, t_mapdata *data)
 	{
 		map[i] = get_next_line(fd);
 		if (map[i] == NULL)
-			free_and_error(map, "map read failed");
+			map_free_and_error(map, "map read failed");
 		i ++;
 		line --;
 	}
 	data->rows = rows_len(map[0]);
-	map[i] = NULL;
+	map[i] = get_next_line(fd);
 	return (map);
 }
 
 void	read_image(t_mapdata *data)
 {
 	data->wall_img = mlx_xpm_file_to_image(data->mlx, WALL_IMAGE,
-			&data->rows, &data->cols);
+			&data->pixel, &data->pixel);
 	data->player_img = mlx_xpm_file_to_image(data->mlx, PLAYER_IMAGE,
-			&data->rows, &data->cols);
+			&data->pixel, &data->pixel);
 	data->player_run_img = mlx_xpm_file_to_image(data->mlx, PLAYER_RUN_IMAGE,
-			&data->rows, &data->cols);
+			&data->pixel, &data->pixel);
 	data->space_img = mlx_xpm_file_to_image(data->mlx, EMPTY_IMAGE,
-			&data->rows, &data->cols);
+			&data->pixel, &data->pixel);
 	data->collectible_img = mlx_xpm_file_to_image(data->mlx, COLLECTIBLE_IMAGE,
-			&data->rows, &data->cols);
+			&data->pixel, &data->pixel);
 	data->exit_img = mlx_xpm_file_to_image(data->mlx, EXIT_IMAGE,
-			&data->rows, &data->cols);
+			&data->pixel, &data->pixel);
 }
 
 void	drew_img(t_mapdata *data, char map, int x, int y)
