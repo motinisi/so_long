@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/06 15:13:37 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:45:21 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ int	keyboard_hook(int keycode, t_mapdata *data)
 	replace_space(data);
 	if (keycode == ESC)
 	{
-		// destroy_image(data);
-		// mlx_destroy_window(data->mlx, data->window);
 		all_free(data);
 		exit (0);
 	}
