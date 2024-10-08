@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/08 18:08:39 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:24:30 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <errno.h>
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
+# include "ft_printf/ft_printf.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
@@ -42,8 +43,8 @@
 # define EXIT_IMAGE "./textures/exit.xpm"
 
 // # define PIXEL 35
-# define PIXEL 50
-// # define PIXEL 85
+// # define PIXEL 50
+# define PIXEL 85
 
 # if PIXEL == 85
 #  undef WALL_IMAGE
@@ -143,11 +144,12 @@ int		shape_check(t_mapdata data);
 void	map_check(t_mapdata *data, int x, int y);
 void	check_hidden(char *argv);
 void	exit_game(t_mapdata *data);
-void	wall_rows_check(t_mapdata *data);
-void	wall_cols_check(t_mapdata *data);
-int		close_window(char **map);
+void	wall_rows_check(t_mapdata *data, t_mapcheck *check);
+void	wall_cols_check(t_mapdata *data, t_mapcheck *check);
+int		close_window(t_mapdata *data);
 void	all_free(t_mapdata *data);
 void	destroy_image(t_mapdata *data);
 void	map_free_and_error(char **map, char*message);
+void	flag_error(char **map, char *message, t_mapcheck *check);
 void	character_check(t_mapdata *data);
 #endif

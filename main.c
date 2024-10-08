@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/08 18:07:54 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:24:48 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(data.mlx, data.window,
 		data.player_run_img, data.player_x * PIXEL, data.player_y * PIXEL);
 	mlx_key_hook(data.window, keyboard_hook, &data);
-	mlx_hook(data.window, 17, 0, close_window, data.map);
+	mlx_hook(data.window, 17, 0, close_window, &data);
 	mlx_loop(data.mlx);
 	all_free(&data);
 	return (0);

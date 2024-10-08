@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 18:04:33 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/08 18:13:19 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:24:11 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ void	check_hidden(char *argv)
 		error("file error\n");
 }
 
-int	close_window(char **map)
+int	close_window(t_mapdata *data)
 {
-	free_map(map);
+	all_free(data);
 	exit(0);
+}
+
+void	flag_error(char **map, char *message, t_mapcheck *check)
+{
+	free(check);
+	map_free_and_error(map, message);
 }
 
 void	character_check(t_mapdata *data)

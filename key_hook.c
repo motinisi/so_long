@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/07 13:45:21 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:38:31 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	itemcollect(t_mapdata *data)
 	{
 		data->collect_item -= 1;
 		map[y][x] = '0';
-		printf ("key_hook.c  collect%d\n", data->collect_item);
 	}
 }
 
@@ -107,6 +106,6 @@ int	keyboard_hook(int keycode, t_mapdata *data)
 	else
 		mlx_put_image_to_window(data->mlx, data->window, data->player_img,
 			data->player_x * PIXEL, data->player_y * PIXEL);
-	printf("key_hook.c  count : %d\n", data->movecount);
+	ft_printf("key_count : %d\n", data->movecount);
 	return (0);
 }

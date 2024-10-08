@@ -6,21 +6,11 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:44:29 by timanish          #+#    #+#             */
-/*   Updated: 2024/09/30 15:13:54 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:16:53 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i ++;
-	return (i);
-}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

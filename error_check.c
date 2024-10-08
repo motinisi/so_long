@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:24:32 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/07 13:52:58 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:39:46 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	shape_check(t_mapdata data)
 	return (0);
 }
 
-void	wall_rows_check(t_mapdata *data)
+void	wall_rows_check(t_mapdata *data, t_mapcheck *check)
 {
 	char	*fst_rows;
 	char	*last_rows;
@@ -71,19 +71,19 @@ void	wall_rows_check(t_mapdata *data)
 	while (*fst_rows != '\n')
 	{
 		if (*fst_rows != '1')
-			map_free_and_error(data->map, "wall incorrect\n");
+			flag_error(data->map, "wall incorrect\n", check);
 		fst_rows ++;
 	}
 	last_rows = data->map[data->cols - 1];
 	while (*last_rows)
 	{
 		if (*last_rows != '1')
-			map_free_and_error(data->map, "wall incorrect\n");
+			flag_error(data->map, "wall incorrect\n", check);
 		last_rows ++;
 	}
 }
 
-void	wall_cols_check(t_mapdata *data)
+void	wall_cols_check(t_mapdata *data, t_mapcheck *check)
 {
 	int	i;
 
@@ -91,12 +91,12 @@ void	wall_cols_check(t_mapdata *data)
 	while (--i >= 0)
 	{
 		if (data->map[i][0] != '1')
-			map_free_and_error(data->map, "wall incorrect\n");
+			flag_error(data->map, "wall incorrect\n", check);
 	}
 	i = data->cols;
 	while (--i >= 0)
 	{
 		if (data->map[i][data->rows - 1] != '1')
-			map_free_and_error(data->map, "wall incorrect\n");
+			flag_error(data->map, "wall incorrect\n", check);
 	}
 }

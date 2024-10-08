@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:47:22 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/06 17:10:54 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:37:26 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,24 +87,24 @@ void	repair_map(t_mapdata *data)
 void	map_check(t_mapdata *data, int x, int y)
 {
 	t_mapcheck	*check;
-	int			frag;
+	int			flag;
 
 	check = (t_mapcheck *)malloc(sizeof(t_mapcheck));
 	if (!check)
 		free_and_error(data, "malloc failed\n");
-	frag = shape_check(*data);
-	if (frag == 1)
-		map_free_and_error(data->map, "map shape incorrect\n");
-	if (frag == 2)
-		map_free_and_error(data->map, "characters incorrect\n");
+	flag = shape_check(*data);
+	if (flag == 1)
+		flag_error(data->map, "map shape incorrect\n", check);
 	check->collect_count = 0;
 	check->exit_count = 0;
-	wall_rows_check(data);
-	wall_cols_check(data);
+	wall_rows_check(data, check);
+	wall_cols_check(data, check);
 	collect_check(data, check, x, y);
 	repair_map(data);
 	if ((data->collect_item != check->collect_count)
 		|| check->exit_count != 1 || check->collect_count == 0)
-		frag = 2;
+		flag = 2;
+	if (flag == 2)
+		flag_error(data->map, "characters incorrect\n", check);
 	free(check);
 }

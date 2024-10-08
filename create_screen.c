@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:58 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/06 16:52:34 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/07 15:29:31 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**read_map(char *argv, t_mapdata *data)
 	{
 		map[i] = get_next_line(fd);
 		if (map[i] == NULL)
-			map_free_and_error(map, "map read failed");
+			map_free_and_error(map, "map read failed\n");
 		i ++;
 		line --;
 	}
