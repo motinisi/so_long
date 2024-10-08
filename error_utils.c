@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 18:04:33 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/06 16:12:50 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:13:19 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,26 @@ int	close_window(char **map)
 {
 	free_map(map);
 	exit(0);
+}
+
+void	character_check(t_mapdata *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (data->map[y] != NULL)
+	{
+		x = 0;
+		while (data->map[y][x] != '\0')
+		{
+			if (data->map[y][x] != '0' && data->map[y][x] != '1'
+				&& data->map[y][x] != 'C' && data->map[y][x] != 'E'
+				&& data->map[y][x] != 'P' && data->map[y][x] != '\n')
+				map_free_and_error(data->map, "character incorrect\n");
+			x ++;
+		}
+		y ++;
+	}
 }

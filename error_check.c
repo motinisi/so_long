@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:24:32 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/06 17:17:52 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:52:58 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,3 @@ void	wall_cols_check(t_mapdata *data)
 			map_free_and_error(data->map, "wall incorrect\n");
 	}
 }
-

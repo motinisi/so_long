@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/07 13:45:49 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:08:39 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <errno.h>
 # include "minilibx-linux/mlx.h"
 # include "libft/libft.h"
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
@@ -150,4 +149,5 @@ int		close_window(char **map);
 void	all_free(t_mapdata *data);
 void	destroy_image(t_mapdata *data);
 void	map_free_and_error(char **map, char*message);
+void	character_check(t_mapdata *data);
 #endif
