@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:47:22 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/07 15:37:26 by timanish         ###   ########.fr       */
+/*   Updated: 2024/10/08 18:41:32 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	map_check(t_mapdata *data, int x, int y)
 	if (!check)
 		free_and_error(data, "malloc failed\n");
 	flag = shape_check(*data);
-	if (flag == 1)
-		flag_error(data->map, "map shape incorrect\n", check);
+	// if (flag == 1)
+	// 	flag_error(data->map, "map shape incorrect\n", check);
 	check->collect_count = 0;
 	check->exit_count = 0;
 	wall_rows_check(data, check);
