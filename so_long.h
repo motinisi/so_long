@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/08 18:24:30 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:16:19 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 # define EXIT_IMAGE "./textures/exit.xpm"
 
 // # define PIXEL 35
-// # define PIXEL 50
-# define PIXEL 85
+# define PIXEL 50
+// # define PIXEL 85
 
 # if PIXEL == 85
 #  undef WALL_IMAGE
