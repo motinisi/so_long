@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/05 18:47:02 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:42:42 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,45 @@ int	player_coordinate(t_mapdata *data)
 	return (1);
 }
 
+int	player_jump(t_mapdata *data)
+{
+	if ((data->flag / 10000) % 2 == 0)
+	{
+		mlx_put_image_to_window(data->mlx, data->window, data->player_run_img,
+			data->player_x * PIXEL, data->player_y * PIXEL);
+		data->flag ++;
+	}
+	else
+	{
+		mlx_put_image_to_window(data->mlx, data->window,
+			data->player_img, data->player_x * PIXEL, data->player_y * PIXEL);
+		data->flag ++;
+		if (data->flag == 30000)
+			data->flag = 10000;
+	}
+	return (0);
+}
+
+int	key_move(t_mapdata *data)
+{
+	int	key_press_mask;
+
+	key_press_mask = 1L << 0;
+	mlx_hook(data->window, 2, key_press_mask, keyboard_hook, data);
+	// mlx_key_hook(data->window, keyboard_hook, data);
+	mlx_hook(data->window, 17, 0, close_window, data);
+	mlx_loop_hook(data->mlx, player_jump, data);
+	mlx_loop(data->mlx);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mapdata	data;
 
 	arg_cheak(argc, argv);
 	data.movecount = 0;
+	data.flag = 0;
 	data.map = read_map(argv[1], &data);
 	if (!data.map)
 		error("read failed\n");
@@ -60,11 +93,7 @@ int	main(int argc, char **argv)
 			data.cols * PIXEL, "game");
 	read_image(&data);
 	create_map(&data, data.map);
-	mlx_put_image_to_window(data.mlx, data.window,
-		data.player_run_img, data.player_x * PIXEL, data.player_y * PIXEL);
-	mlx_key_hook(data.window, keyboard_hook, &data);
-	mlx_hook(data.window, 17, 0, close_window, &data);
-	mlx_loop(data.mlx);
+	key_move(&data);
 	all_free(&data);
 	return (0);
 }

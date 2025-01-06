@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/05 16:16:19 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:41:34 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_mapdata
 	int		player_x;
 	int		movecount;
 	int		pixel;
+	size_t	flag;
 }	t_mapdata;
 
 typedef struct s_mapcheck
