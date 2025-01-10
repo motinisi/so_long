@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/10 16:06:46 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:27:18 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,25 +88,33 @@
 # define W_KEY 119
 # define ESC 65307
 
+typedef struct s_bonusdata
+{
+	int	exit_y;
+	int	exit_x;
+	int	flag;
+}	t_bonusdata;
+
 typedef struct s_mapdata
 {
-	void	*mlx;
-	void	*window;
-	void	*wall_img;
-	void	*player_img;
-	void	*player_run_img;
-	void	*space_img;
-	void	*collectible_img;
-	void	*exit_img;
-	int		cols;
-	int		rows;
-	char	**map;
-	int		collect_item;
-	int		player_y;
-	int		player_x;
-	int		movecount;
-	int		pixel;
-	size_t	flag;
+	void		*mlx;
+	void		*window;
+	void		*wall_img;
+	void		*player_img;
+	void		*player_run_img;
+	void		*space_img;
+	void		*collectible_img;
+	void		*exit_img;
+	int			cols;
+	int			rows;
+	char		**map;
+	int			collect_item;
+	int			player_y;
+	int			player_x;
+	int			movecount;
+	int			pixel;
+	size_t		flag;
+	t_bonusdata	*bonus_data;
 }	t_mapdata;
 
 typedef struct s_mapcheck
@@ -120,12 +128,6 @@ typedef struct s_spaceimg
 	int	space_y;
 	int	space_x;
 }	t_spaceimg;
-
-typedef struct s_exitimg
-{
-	int	exit_y;
-	int	exit_x;
-}	t_exitimg;
 
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
