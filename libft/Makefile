@@ -6,12 +6,11 @@
 #    By: timanish <timanish@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/18 11:04:36 by yonuma            #+#    #+#              #
-#    Updated: 2024/09/28 13:05:14 by timanish         ###   ########.fr        #
+#    Updated: 2025/01/10 17:37:38 by timanish         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# CC = cc
-CC = clang
+CC = cc
 CFRAGS = -Wall -Wextra -Werror
 NAME = libft.a
 SRCS = 	ft_bzero.c \

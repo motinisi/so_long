@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/10 17:28:24 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/10 17:57:48 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ int	player_coordinate(t_mapdata *data)
 
 int	player_jump(t_mapdata *data)
 {
-	if ((data->flag / 10000) % 2 == 0)
+	if ((data->time_flag / 10000) % 2 == 0)
 	{
 		mlx_put_image_to_window(data->mlx, data->window, data->player_run_img,
 			data->player_x * PIXEL, data->player_y * PIXEL);
-		data->flag ++;
+		data->time_flag ++;
 	}
 	else
 	{
 		mlx_put_image_to_window(data->mlx, data->window,
 			data->player_img, data->player_x * PIXEL, data->player_y * PIXEL);
-		data->flag ++;
-		if (data->flag == 30000)
-			data->flag = 10000;
+		data->time_flag ++;
+		if (data->time_flag == 30000)
+			data->time_flag = 10000;
 	}
 	return (0);
 }
@@ -106,6 +106,8 @@ int	key_move(t_mapdata *data)
 {
 	int			key_press_mask;
 
+	data->bonus_data = (t_bonusdata *)malloc(sizeof(t_bonusdata));
+	data->bonus_data->flag = 0;
 	key_press_mask = 1L << 0;
 	// printf("collect_item: %d\n", data->collect_item);
 	mlx_hook(data->window, 2, key_press_mask, keyboard_hook, data);
