@@ -6,7 +6,7 @@
 /*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 01:46:52 by nisi             ###   ########.fr       */
+/*   Updated: 2025/01/11 02:05:33 by nisi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,12 @@ void	enemy_traking(t_mapdata *data)
 	}
 	if (data->enemy->enemy_x == data->player_x && data->enemy->enemy_y == data->player_y)
 		game_over(data);
-	mlx_put_image_to_window(data->mlx, data->window, data->enemy->enemy_img,
-			data->enemy->enemy_x * PIXEL, data->enemy->enemy_y * PIXEL);
-	draw_prev_image(data, prev_x, prev_y);
+	if (prev_x !=  data->enemy->enemy_x || prev_y != data->enemy->enemy_y)
+	{
+		mlx_put_image_to_window(data->mlx, data->window, data->enemy->enemy_img,
+				data->enemy->enemy_x * PIXEL, data->enemy->enemy_y * PIXEL);
+		draw_prev_image(data, prev_x, prev_y);
+	}
 }
 
 int	bonus_move(t_mapdata *data)
