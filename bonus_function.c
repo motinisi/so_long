@@ -6,7 +6,7 @@
 /*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 02:05:33 by nisi             ###   ########.fr       */
+/*   Updated: 2025/01/11 02:26:43 by nisi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,7 @@ void	make_enemy(t_mapdata *data)
 {
 	data->enemy = (t_enemy *)malloc(sizeof(t_enemy));
 	data->enemy->enemy_flag = 0;
+	data->enemy->wait = 0;
 	search_exit(data);
 	data->enemy->enemy_x = data->bonus_data->exit_x;
 	data->enemy->enemy_y = data->bonus_data->exit_y;

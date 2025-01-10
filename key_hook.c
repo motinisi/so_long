@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/07 14:38:31 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/11 02:24:19 by nisi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ int	keyboard_hook(int keycode, t_mapdata *data)
 		all_free(data);
 		exit (0);
 	}
-	else if (keycode == W_KEY || keycode == S_KEY)
+	else if ((keycode == W_KEY || keycode == S_KEY) && data->enemy->wait == 0)
 		key_hook_y(keycode, data);
-	else if (keycode == A_KEY || keycode == D_KEY)
+	else if ((keycode == A_KEY || keycode == D_KEY) && data->enemy->wait == 0)
 		key_hook_x(keycode, data);
 	itemcollect(data);
 	exit_game(data);

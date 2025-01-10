@@ -6,7 +6,7 @@
 /*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 01:05:15 by nisi             ###   ########.fr       */
+/*   Updated: 2025/01/11 02:23:40 by nisi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_enemy
 	int	enemy_x;
 	int *enemy_img;
 	int	enemy_flag;
+	size_t wait;
 }	t_enemy;
 
 typedef struct s_mapdata
