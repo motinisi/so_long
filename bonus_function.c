@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_function.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/10 17:57:48 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/11 01:46:52 by nisi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@ int	player_jump(t_mapdata *data)
 	{
 		mlx_put_image_to_window(data->mlx, data->window, data->player_run_img,
 			data->player_x * PIXEL, data->player_y * PIXEL);
-		data->time_flag ++;
 	}
 	else
 	{
 		mlx_put_image_to_window(data->mlx, data->window,
 			data->player_img, data->player_x * PIXEL, data->player_y * PIXEL);
-		data->time_flag ++;
 		if (data->time_flag == 30000)
 			data->time_flag = 10000;
 	}
@@ -83,7 +81,6 @@ void	search_exit(t_mapdata *data)
 
 void	change_exit(t_mapdata *data)
 {
-	search_exit(data);
 	mlx_destroy_image(data->mlx, data->exit_img);
 	data->exit_img = mlx_xpm_file_to_image(data->mlx, OKEXIT_IMAGE,
 			&data->pixel, &data->pixel);
@@ -91,9 +88,69 @@ void	change_exit(t_mapdata *data)
 		data->bonus_data->exit_x * PIXEL, data->bonus_data->exit_y * PIXEL);
 }
 
+void	draw_prev_image(t_mapdata *data, int prev_x, int prev_y)
+{
+	if (data->map[prev_y][prev_x] == '0' || data->map[prev_y][prev_x] == 'E'
+		|| data->map[prev_y][prev_x] == 'P')
+	{
+		mlx_put_image_to_window(data->mlx, data->window, data->space_img,
+			prev_x * PIXEL, prev_y * PIXEL);
+	}
+	else if (data->map[prev_y][prev_x] == 'C')
+	{
+		mlx_put_image_to_window(data->mlx, data->window, data->collectible_img,
+			prev_x * PIXEL, prev_y * PIXEL);
+	}
+	else if (data->map[prev_y][prev_x] == '1')
+	{
+		mlx_put_image_to_window(data->mlx, data->window, data->wall_img,
+			prev_x * PIXEL, prev_y * PIXEL);
+	}
+}
+
+void	game_over(t_mapdata *data)
+{
+	free(data->enemy);
+	free(data->bonus_data);
+	all_free(data);
+	ft_printf("GAME OVER\n");
+	exit (0);
+}
+
+void	enemy_traking(t_mapdata *data)
+{
+	const int prev_x = data->enemy->enemy_x;
+	const int prev_y = data->enemy->enemy_y;
+	
+	if (data->enemy->enemy_flag == 0)
+	{
+		if (data->enemy->enemy_x < data->player_x)
+			data->enemy->enemy_x += 1;
+		else if (data->enemy->enemy_x > data->player_x)
+			data->enemy->enemy_x -= 1;
+		data->enemy->enemy_flag = 1;
+	}
+	else if (data->enemy->enemy_flag == 1)
+	{
+		if (data->enemy->enemy_y < data->player_y)
+			data->enemy->enemy_y += 1;
+		else if (data->enemy->enemy_y > data->player_y)
+			data->enemy->enemy_y -= 1;
+		data->enemy->enemy_flag = 0;
+	}
+	if (data->enemy->enemy_x == data->player_x && data->enemy->enemy_y == data->player_y)
+		game_over(data);
+	mlx_put_image_to_window(data->mlx, data->window, data->enemy->enemy_img,
+			data->enemy->enemy_x * PIXEL, data->enemy->enemy_y * PIXEL);
+	draw_prev_image(data, prev_x, prev_y);
+}
+
 int	bonus_move(t_mapdata *data)
 {
+	data->time_flag ++;
 	player_jump(data);
+	if (data->time_flag % 5000 == 0)
+		enemy_traking(data);
 	if (data->collect_item == 0 && data->bonus_data->flag != 1)
 	{
 		change_exit(data);
@@ -106,20 +163,35 @@ int	key_move(t_mapdata *data)
 {
 	int			key_press_mask;
 
-	data->bonus_data = (t_bonusdata *)malloc(sizeof(t_bonusdata));
-	data->bonus_data->flag = 0;
 	key_press_mask = 1L << 0;
-	// printf("collect_item: %d\n", data->collect_item);
 	mlx_hook(data->window, 2, key_press_mask, keyboard_hook, data);
-	// mlx_key_hook(data->window, keyboard_hook, data);
 	mlx_hook(data->window, 17, 0, close_window, data);
 	mlx_loop_hook(data->mlx, bonus_move, data);
 	mlx_loop(data->mlx);
 	return (0);
 }
 
+
+void	make_enemy(t_mapdata *data)
+{
+	data->enemy = (t_enemy *)malloc(sizeof(t_enemy));
+	data->enemy->enemy_flag = 0;
+	search_exit(data);
+	data->enemy->enemy_x = data->bonus_data->exit_x;
+	data->enemy->enemy_y = data->bonus_data->exit_y;
+	printf("enemy_x : %d enemy_y : %d\n", data->enemy->enemy_x, data->enemy->enemy_y);
+	data->enemy->enemy_img = mlx_xpm_file_to_image(data->mlx, ENEMY_IMAGE,
+			&data->pixel, &data->pixel);
+	mlx_put_image_to_window(data->mlx, data->window, data->enemy->enemy_img,
+		data->enemy->enemy_x * PIXEL, data->enemy->enemy_y * PIXEL);
+	
+}
+
 void	bonus_function(t_mapdata *data)
 {
+	data->bonus_data = (t_bonusdata *)malloc(sizeof(t_bonusdata));
+	data->bonus_data->flag = 0;
+	make_enemy(data);
 	printf("FILE : %s LINE : %d\n", __FILE__, __LINE__);
 	key_move(data);
 	printf("This is a bonus function\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/10 17:50:24 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/11 01:05:15 by nisi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@
 #  define COLLECTIBLE_IMAGE "./textures/50collectible.xpm"
 #  define EXIT_IMAGE "./textures/50newexit.xpm"
 #  define OKEXIT_IMAGE "./textures/50okexit.xpm"
-#  define ENEMY_IMAGE "./textures/50enemy.xpm"
+#  define ENEMY_IMAGE "./textures/enemy.xpm"
 #  define WIN_HEIGHT_MAX 42
 #  define WIN_WIDTH_MAX 77
 # endif
@@ -94,6 +94,14 @@ typedef struct s_bonusdata
 	int	exit_x;
 	int	flag;
 }	t_bonusdata;
+
+typedef struct s_enemy
+{
+	int	enemy_y;
+	int	enemy_x;
+	int *enemy_img;
+	int	enemy_flag;
+}	t_enemy;
 
 typedef struct s_mapdata
 {
@@ -115,6 +123,7 @@ typedef struct s_mapdata
 	int			pixel;
 	size_t		time_flag;
 	t_bonusdata	*bonus_data;
+	t_enemy		*enemy;
 }	t_mapdata;
 
 typedef struct s_mapcheck
