@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 14:37:58 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/07 15:29:31 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:08:47 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ void	drew_img(t_mapdata *data, char map, int x, int y)
 		mlx_put_image_to_window(data->mlx, data->window,
 			data->collectible_img, x * PIXEL, y * PIXEL);
 	else if (map == 'E')
+	{
 		mlx_put_image_to_window(data->mlx, data->window,
 			data->exit_img, x * PIXEL, y * PIXEL);
+	}
 }
 
 void	create_map(t_mapdata *data, char **map)

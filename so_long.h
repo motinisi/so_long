@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/06 12:41:34 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:06:46 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,9 @@
 #  define PLAYER_RUN_IMAGE "./textures/50run1.xpm"
 #  define EMPTY_IMAGE "./textures/50empty.xpm"
 #  define COLLECTIBLE_IMAGE "./textures/50collectible.xpm"
-#  define EXIT_IMAGE "./textures/50exit.xpm"
+#  define EXIT_IMAGE "./textures/50newexit.xpm"
+#  define OKEXIT_IMAGE "./textures/50okexit.xpm"
+#  define ENEMY_IMAGE "./textures/50enemy.xpm"
 #  define WIN_HEIGHT_MAX 42
 #  define WIN_WIDTH_MAX 77
 # endif
@@ -119,6 +121,12 @@ typedef struct s_spaceimg
 	int	space_x;
 }	t_spaceimg;
 
+typedef struct s_exitimg
+{
+	int	exit_y;
+	int	exit_x;
+}	t_exitimg;
+
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*connect_buf(int fd, char *buf, char *save_buf);
@@ -153,4 +161,6 @@ void	destroy_image(t_mapdata *data);
 void	map_free_and_error(char **map, char*message);
 void	flag_error(char **map, char *message, t_mapcheck *check);
 void	character_check(t_mapdata *data);
+int		player_coordinate(t_mapdata *data);
+void	bonus_function(t_mapdata *data);
 #endif

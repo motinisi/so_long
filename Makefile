@@ -6,7 +6,7 @@
 #    By: timanish <timanish@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 15:37:03 by timanish          #+#    #+#              #
-#    Updated: 2024/10/07 14:09:52 by timanish         ###   ########.fr        #
+#    Updated: 2025/01/10 15:54:57 by timanish         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = main.c\
 		error_check.c\
 		error_utils.c\
 		free.c\
+		bonus_function.c\
 
 OBJS = $(SRCS:.c=.o)
 
