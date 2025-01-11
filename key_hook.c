@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 02:24:19 by nisi             ###   ########.fr       */
+/*   Updated: 2025/01/11 20:07:48 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	replace_space(t_mapdata *data)
 
 int	keyboard_hook(int keycode, t_mapdata *data)
 {
+	data->enemy->wait = 0;
 	replace_space(data);
 	if (keycode == ESC)
 	{
