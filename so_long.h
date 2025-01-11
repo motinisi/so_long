@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nisi <nisi@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 02:23:40 by nisi             ###   ########.fr       */
+/*   Updated: 2025/01/11 18:49:37 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <fcntl.h>
-# include <string.h>
-# include <errno.h>
-# include "minilibx-linux/mlx.h"
-# include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
+# include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
+# include <errno.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 5
@@ -78,6 +78,7 @@
 #  define EXIT_IMAGE "./textures/50newexit.xpm"
 #  define OKEXIT_IMAGE "./textures/50okexit.xpm"
 #  define ENEMY_IMAGE "./textures/enemy.xpm"
+#  define ENEMY_ON_WALL "./textures/enemy_on_wall.xpm"
 #  define WIN_HEIGHT_MAX 42
 #  define WIN_WIDTH_MAX 77
 # endif
@@ -90,19 +91,20 @@
 
 typedef struct s_bonusdata
 {
-	int	exit_y;
-	int	exit_x;
-	int	flag;
-}	t_bonusdata;
+	int			exit_y;
+	int			exit_x;
+	int			flag;
+}				t_bonusdata;
 
 typedef struct s_enemy
 {
-	int	enemy_y;
-	int	enemy_x;
-	int *enemy_img;
-	int	enemy_flag;
-	size_t wait;
-}	t_enemy;
+	int			enemy_y;
+	int			enemy_x;
+	int			*enemy_img;
+	int			*enemy_on_wall;
+	int			enemy_flag;
+	size_t		wait;
+}				t_enemy;
 
 typedef struct s_mapdata
 {
@@ -125,54 +127,54 @@ typedef struct s_mapdata
 	size_t		time_flag;
 	t_bonusdata	*bonus_data;
 	t_enemy		*enemy;
-}	t_mapdata;
+}				t_mapdata;
 
 typedef struct s_mapcheck
 {
-	int	collect_count;
-	int	exit_count;
-}	t_mapcheck;
+	int			collect_count;
+	int			exit_count;
+}				t_mapcheck;
 
 typedef struct s_spaceimg
 {
-	int	space_y;
-	int	space_x;
-}	t_spaceimg;
+	int			space_y;
+	int			space_x;
+}				t_spaceimg;
 
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*connect_buf(int fd, char *buf, char *save_buf);
-char	*result_buf(char *save_buf, size_t i, char *re_buf);
-char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
-char	*save_check(char *save_buf, char *buf);
-void	error(char *message);
-int		line_count(char *argv, t_mapdata *data);
-void	free_map(char **map);
-char	**read_map(char *argv, t_mapdata *data);
-void	read_image(t_mapdata *data);
-void	drew_img(t_mapdata *data, char map, int x, int y);
-void	create_map(t_mapdata *data, char **map);
-void	key_hook_y(int keycode, t_mapdata *data);
-void	key_hook_x(int keycode, t_mapdata *data);
-int		keyboard_hook(int keycode, t_mapdata *data);
-int		rows_len(char *str);
-void	free_and_error(t_mapdata *data, char *message);
-void	arg_cheak(int argc, char **argv);
-void	collect_check(t_mapdata *data, t_mapcheck *check, int x, int y);
-void	repair_map(t_mapdata *data);
-int		shape_check(t_mapdata data);
-void	map_check(t_mapdata *data, int x, int y);
-void	check_hidden(char *argv);
-void	exit_game(t_mapdata *data);
-void	wall_rows_check(t_mapdata *data, t_mapcheck *check);
-void	wall_cols_check(t_mapdata *data, t_mapcheck *check);
-int		close_window(t_mapdata *data);
-void	all_free(t_mapdata *data);
-void	destroy_image(t_mapdata *data);
-void	map_free_and_error(char **map, char*message);
-void	flag_error(char **map, char *message, t_mapcheck *check);
-void	character_check(t_mapdata *data);
-int		player_coordinate(t_mapdata *data);
-void	bonus_function(t_mapdata *data);
+size_t			ft_strlen(const char *str);
+char			*ft_strjoin(char const *s1, char const *s2);
+char			*connect_buf(int fd, char *buf, char *save_buf);
+char			*result_buf(char *save_buf, size_t i, char *re_buf);
+char			*get_next_line(int fd);
+char			*ft_strchr(const char *s, int c);
+char			*save_check(char *save_buf, char *buf);
+void			error(char *message);
+int				line_count(char *argv, t_mapdata *data);
+void			free_map(char **map);
+char			**read_map(char *argv, t_mapdata *data);
+void			read_image(t_mapdata *data);
+void			drew_img(t_mapdata *data, char map, int x, int y);
+void			create_map(t_mapdata *data, char **map);
+void			key_hook_y(int keycode, t_mapdata *data);
+void			key_hook_x(int keycode, t_mapdata *data);
+int				keyboard_hook(int keycode, t_mapdata *data);
+int				rows_len(char *str);
+void			free_and_error(t_mapdata *data, char *message);
+void			arg_cheak(int argc, char **argv);
+void			collect_check(t_mapdata *data, t_mapcheck *check, int x, int y);
+void			repair_map(t_mapdata *data);
+int				shape_check(t_mapdata data);
+void			map_check(t_mapdata *data, int x, int y);
+void			check_hidden(char *argv);
+void			exit_game(t_mapdata *data);
+void			wall_rows_check(t_mapdata *data, t_mapcheck *check);
+void			wall_cols_check(t_mapdata *data, t_mapcheck *check);
+int				close_window(t_mapdata *data);
+void			all_free(t_mapdata *data);
+void			destroy_image(t_mapdata *data);
+void			map_free_and_error(char **map, char *message);
+void			flag_error(char **map, char *message, t_mapcheck *check);
+void			character_check(t_mapdata *data);
+int				player_coordinate(t_mapdata *data);
+void			bonus_function(t_mapdata *data);
 #endif
