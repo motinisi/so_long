@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 20:08:32 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/11 20:41:41 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int	bonus_move(t_mapdata *data)
 {
 	data->time_flag++;
 	player_jump(data);
-	if (data->time_flag % 5000 == 0)
+	if (data->time_flag % 3750 == 0)
 		enemy_traking(data);
 	if (data->collect_item == 0 && data->bonus_data->flag != 1)
 	{
