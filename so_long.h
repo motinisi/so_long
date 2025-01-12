@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 18:49:37 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:33:05 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_bonusdata
 	int			exit_y;
 	int			exit_x;
 	int			flag;
+	int			enemy_speed;
 }				t_bonusdata;
 
 typedef struct s_enemy
@@ -176,5 +177,7 @@ void			map_free_and_error(char **map, char *message);
 void			flag_error(char **map, char *message, t_mapcheck *check);
 void			character_check(t_mapdata *data);
 int				player_coordinate(t_mapdata *data);
-void			bonus_function(t_mapdata *data);
+void			bonus_function(t_mapdata *data, int argc, char *level);
+void			level_select(char *level, t_mapdata *data);
+void			free_enemy(t_mapdata *data);
 #endif

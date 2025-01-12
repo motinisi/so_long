@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 15:26:06 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/10 17:54:20 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:32:53 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv)
 			data.cols * PIXEL, "game");
 	read_image(&data);
 	create_map(&data, data.map);
-	bonus_function(&data);
+	bonus_function(&data, argc, argv[3]);
 	all_free(&data);
 	return (0);
 }

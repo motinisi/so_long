@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 20:41:41 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:54:35 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,24 @@ int	player_coordinate(t_mapdata *data)
 	if (count == 1)
 		return (0);
 	return (1);
+}
+
+void	level_select(char *level, t_mapdata *data)
+{
+	// if(!level)
+	// 	error("need to select: NONE , EASY , NORMAL , HARD , HELL\n");
+	if (!ft_strncmp(level, "EASY", 5))
+		data->bonus_data->enemy_speed = 10000;
+	else if (!ft_strncmp(level, "NORMAL", 7))
+		data->bonus_data->enemy_speed = 5000;
+	else if (!ft_strncmp(level, "HARD", 5))
+		data->bonus_data->enemy_speed = 3750;
+	else if (!ft_strncmp(level, "HELL", 5))
+		data->bonus_data->enemy_speed = 2500;
+	else if (!ft_strncmp(level, "NONE", 5))
+		data->bonus_data->enemy_speed = 0;
+	// else
+	// 	error("need to select: NONE , EASY , NORMAL , HARD , HELL\n");
 }
 
 int	player_jump(t_mapdata *data)
@@ -110,7 +128,7 @@ void	draw_prev_image(t_mapdata *data, int prev_x, int prev_y)
 
 void	game_over(t_mapdata *data)
 {
-	free(data->enemy);
+	free_enemy(data);
 	free(data->bonus_data);
 	all_free(data);
 	ft_printf("GAME OVER\n");
@@ -161,7 +179,7 @@ int	bonus_move(t_mapdata *data)
 {
 	data->time_flag++;
 	player_jump(data);
-	if (data->time_flag % 3750 == 0)
+	if (data->time_flag % data->bonus_data->enemy_speed == 0)
 		enemy_traking(data);
 	if (data->collect_item == 0 && data->bonus_data->flag != 1)
 	{
@@ -191,8 +209,8 @@ void	make_enemy(t_mapdata *data)
 	search_exit(data);
 	data->enemy->enemy_x = data->bonus_data->exit_x;
 	data->enemy->enemy_y = data->bonus_data->exit_y;
-	printf("enemy_x : %d enemy_y : %d\n", data->enemy->enemy_x,
-		data->enemy->enemy_y);
+	// printf("enemy_x : %d enemy_y : %d\n", data->enemy->enemy_x,
+	// 	data->enemy->enemy_y);
 	data->enemy->enemy_img = mlx_xpm_file_to_image(data->mlx, ENEMY_IMAGE,
 			&data->pixel, &data->pixel);
 	mlx_put_image_to_window(data->mlx, data->window, data->enemy->enemy_img,
@@ -201,10 +219,13 @@ void	make_enemy(t_mapdata *data)
 			&data->pixel, &data->pixel);
 }
 
-void	bonus_function(t_mapdata *data)
+void	bonus_function(t_mapdata *data, int argc, char *level)
 {
 	data->bonus_data = (t_bonusdata *)malloc(sizeof(t_bonusdata));
 	data->bonus_data->flag = 0;
+	data->bonus_data->enemy_speed = 20000;
+	if (argc != 2)
+		level_select(level, data);
 	make_enemy(data);
 	printf("FILE : %s LINE : %d\n", __FILE__, __LINE__);
 	key_move(data);

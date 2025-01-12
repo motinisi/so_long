@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 19:24:32 by timanish          #+#    #+#             */
-/*   Updated: 2024/10/07 15:39:46 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:43:22 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 void	arg_cheak(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc >= 3 && !ft_strncmp(argv[2], "level", 6))
+	{
+		if (!argv[3])
+			error("need to select level: NONE   EASY   NORMAL   HARD   HELL\n");
+	}
+	else if (argc != 2)
 		error("argument is incorrect\n");
 	if (ft_strncmp(argv[1] + (ft_strlen(argv[1]) - 4), ".ber", 5))
 		error("map must be '.ber'\n");
