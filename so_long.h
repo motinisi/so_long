@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/12 14:33:05 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/12 15:43:32 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ typedef struct s_enemy
 	int			*enemy_img;
 	int			*enemy_on_wall;
 	int			enemy_flag;
-	size_t		wait;
+	size_t		p_wait;
+	size_t		e_wait;
 }				t_enemy;
 
 typedef struct s_mapdata

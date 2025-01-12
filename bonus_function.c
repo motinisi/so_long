@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/12 14:54:35 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/12 15:44:40 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	level_select(char *level, t_mapdata *data)
 	else if (!ft_strncmp(level, "HELL", 5))
 		data->bonus_data->enemy_speed = 2500;
 	else if (!ft_strncmp(level, "NONE", 5))
-		data->bonus_data->enemy_speed = 0;
+		data->bonus_data->enemy_speed = 50000;
 	// else
 	// 	error("need to select: NONE , EASY , NORMAL , HARD , HELL\n");
 }
@@ -178,6 +178,8 @@ void	enemy_traking(t_mapdata *data)
 int	bonus_move(t_mapdata *data)
 {
 	data->time_flag++;
+	if (data->enemy->e_wait != 0)
+		data->enemy->e_wait--;
 	player_jump(data);
 	if (data->time_flag % data->bonus_data->enemy_speed == 0)
 		enemy_traking(data);
@@ -205,7 +207,7 @@ void	make_enemy(t_mapdata *data)
 {
 	data->enemy = (t_enemy *)malloc(sizeof(t_enemy));
 	data->enemy->enemy_flag = 0;
-	// data->enemy->wait = 0;
+	data->enemy->e_wait = 0;
 	search_exit(data);
 	data->enemy->enemy_x = data->bonus_data->exit_x;
 	data->enemy->enemy_y = data->bonus_data->exit_y;

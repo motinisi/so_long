@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 15:44:38 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/11 20:49:17 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/12 15:43:05 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,16 @@ void	replace_space(t_mapdata *data)
 
 int	keyboard_hook(int keycode, t_mapdata *data)
 {
-	data->enemy->wait = 0;
+	data->enemy->p_wait = 0;
 	replace_space(data);
 	if (keycode == ESC)
 	{
 		all_free(data);
 		exit (0);
 	}
-	else if ((keycode == W_KEY || keycode == S_KEY) && data->enemy->wait == 0)
+	else if ((keycode == W_KEY || keycode == S_KEY) && data->enemy->p_wait == 0)
 		key_hook_y(keycode, data);
-	else if ((keycode == A_KEY || keycode == D_KEY) && data->enemy->wait == 0)
+	else if ((keycode == A_KEY || keycode == D_KEY) && data->enemy->p_wait == 0)
 		key_hook_x(keycode, data);
 	itemcollect(data);
 	exit_game(data);
