@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/12 15:44:40 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:46:36 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,8 @@ int	bonus_move(t_mapdata *data)
 	if (data->enemy->e_wait != 0)
 		data->enemy->e_wait--;
 	player_jump(data);
-	if (data->time_flag % data->bonus_data->enemy_speed == 0)
+	if (data->time_flag % data->bonus_data->enemy_speed == 0 &&
+		data->enemy->e_wait == 0)
 		enemy_traking(data);
 	if (data->collect_item == 0 && data->bonus_data->flag != 1)
 	{
@@ -231,5 +232,4 @@ void	bonus_function(t_mapdata *data, int argc, char *level)
 	make_enemy(data);
 	printf("FILE : %s LINE : %d\n", __FILE__, __LINE__);
 	key_move(data);
-	printf("This is a bonus function\n");
 }

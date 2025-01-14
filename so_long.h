@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/12 15:43:32 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:52:56 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@
 # define D_KEY 100
 # define W_KEY 119
 # define ESC 65307
+# define SPACE 32
 
 typedef struct s_bonusdata
 {
