@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/14 17:52:56 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:13:57 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,4 +182,5 @@ int				player_coordinate(t_mapdata *data);
 void			bonus_function(t_mapdata *data, int argc, char *level);
 void			level_select(char *level, t_mapdata *data);
 void			free_enemy(t_mapdata *data);
+void			p_skill(t_mapdata *data);
 #endif

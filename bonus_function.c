@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/14 17:46:36 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:27:03 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,10 @@ int	bonus_move(t_mapdata *data)
 	data->time_flag++;
 	if (data->enemy->e_wait != 0)
 		data->enemy->e_wait--;
+	if (data->enemy->p_wait != 0)
+		data->enemy->p_wait--;
 	player_jump(data);
+	printf("e_wait : %zu\n", data->enemy->e_wait);
 	if (data->time_flag % data->bonus_data->enemy_speed == 0 &&
 		data->enemy->e_wait == 0)
 		enemy_traking(data);
@@ -196,6 +199,7 @@ int	key_move(t_mapdata *data)
 {
 	int	key_press_mask;
 
+	data->enemy->p_wait = 0;
 	key_press_mask = 1L << 0;
 	mlx_hook(data->window, 2, key_press_mask, keyboard_hook, data);
 	mlx_hook(data->window, 17, 0, close_window, data);
@@ -232,4 +236,33 @@ void	bonus_function(t_mapdata *data, int argc, char *level)
 	make_enemy(data);
 	printf("FILE : %s LINE : %d\n", __FILE__, __LINE__);
 	key_move(data);
+}
+
+void 	p_skill(t_mapdata *data)
+{
+	if (data->player_x + 1 == data->enemy->enemy_x
+		&& data->player_y == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	else if (data->player_x - 1 == data->enemy->enemy_x
+		&& data->player_y == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	else if (data->player_x == data->enemy->enemy_x
+		&& data->player_y + 1 == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	else if (data->player_x == data->enemy->enemy_x
+		&& data->player_y - 1 == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	else if (data->player_x + 1 == data->enemy->enemy_x
+		&& data->player_y + 1 == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	else if (data->player_x - 1 == data->enemy->enemy_x
+		&& data->player_y - 1 == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	else if (data->player_x + 1 == data->enemy->enemy_x
+		&& data->player_y - 1 == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	else if (data->player_x - 1 == data->enemy->enemy_x
+		&& data->player_y + 1 == data->enemy->enemy_y)
+		data->enemy->e_wait = 20000;
+	data->enemy->p_wait = 5000;
 }
