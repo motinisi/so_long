@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/14 18:27:03 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:36:58 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,14 @@ void	enemy_traking(t_mapdata *data)
 		prev_put_image(data, prev_x, prev_y);
 }
 
+void	enemy_freeze(t_mapdata *data)
+{
+	data->enemy->enemy_freeze = mlx_xpm_file_to_image(data->mlx, ENEMY_FREEZE,
+			&data->pixel, &data->pixel);
+	mlx_put_image_to_window(data->mlx, data->window, data->enemy->enemy_freeze,
+		data->enemy->enemy_x * PIXEL, data->enemy->enemy_y * PIXEL);
+}
+
 int	bonus_move(t_mapdata *data)
 {
 	data->time_flag++;
@@ -184,9 +192,11 @@ int	bonus_move(t_mapdata *data)
 		data->enemy->p_wait--;
 	player_jump(data);
 	printf("e_wait : %zu\n", data->enemy->e_wait);
-	if (data->time_flag % data->bonus_data->enemy_speed == 0 &&
-		data->enemy->e_wait == 0)
+	if (data->time_flag % data->bonus_data->enemy_speed == 0
+		&& data->enemy->e_wait == 0)
 		enemy_traking(data);
+	else if (data->enemy->e_wait == 19999)
+		enemy_freeze(data);
 	if (data->collect_item == 0 && data->bonus_data->flag != 1)
 	{
 		change_exit(data);

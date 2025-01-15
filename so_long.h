@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/14 18:13:57 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/15 11:29:34 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@
 #  define OKEXIT_IMAGE "./textures/50okexit.xpm"
 #  define ENEMY_IMAGE "./textures/enemy.xpm"
 #  define ENEMY_ON_WALL "./textures/enemy_on_wall.xpm"
+#  define ENEMY_FREEZE "./textures/50enemy_freeze.xpm"
 #  define WIN_HEIGHT_MAX 42
 #  define WIN_WIDTH_MAX 77
 # endif
@@ -104,6 +105,7 @@ typedef struct s_enemy
 	int			enemy_x;
 	int			*enemy_img;
 	int			*enemy_on_wall;
+	int			*enemy_freeze;
 	int			enemy_flag;
 	size_t		p_wait;
 	size_t		e_wait;
