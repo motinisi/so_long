@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:44:51 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/15 11:36:58 by timanish         ###   ########.fr       */
+/*   Updated: 2025/01/16 17:23:14 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,5 +274,5 @@ void 	p_skill(t_mapdata *data)
 	else if (data->player_x - 1 == data->enemy->enemy_x
 		&& data->player_y + 1 == data->enemy->enemy_y)
 		data->enemy->e_wait = 20000;
-	data->enemy->p_wait = 5000;
+	data->enemy->p_wait = 0;
 }
