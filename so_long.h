@@ -6,7 +6,7 @@
 /*   By: timanish <timanish@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 15:32:27 by timanish          #+#    #+#             */
-/*   Updated: 2025/01/15 11:29:34 by timanish         ###   ########.fr       */
+/*   Updated: 2025/12/17 00:00:00 by timanish         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,16 @@
 
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
+
+/*
+** MLX include: macOS / Linux 自動切替
+*/
+# ifdef __APPLE__
+#  include "minilibx-mac/mlx.h"
+# else
+#  include "minilibx-linux/mlx.h"
+# endif
+
 # include <errno.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -84,12 +93,26 @@
 #  define WIN_WIDTH_MAX 77
 # endif
 
-# define S_KEY 115
-# define A_KEY 97
-# define D_KEY 100
-# define W_KEY 119
-# define ESC 65307
-# define SPACE 32
+/*
+** Key codes: macOS / Linux 自動切替
+**  - macOS(minilibx-mac): WASD=13/0/1/2, ESC=53, SPACE=49
+**  - Linux(X11): W/A/S/D=ASCII(119/97/115/100), ESC=65307, SPACE=32
+*/
+# ifdef __APPLE__
+#  define W_KEY 13
+#  define A_KEY 0
+#  define S_KEY 1
+#  define D_KEY 2
+#  define ESC 53
+#  define SPACE 49
+# else
+#  define W_KEY 119
+#  define A_KEY 97
+#  define S_KEY 115
+#  define D_KEY 100
+#  define ESC 65307
+#  define SPACE 32
+# endif
 
 typedef struct s_bonusdata
 {
@@ -185,4 +208,5 @@ void			bonus_function(t_mapdata *data, int argc, char *level);
 void			level_select(char *level, t_mapdata *data);
 void			free_enemy(t_mapdata *data);
 void			p_skill(t_mapdata *data);
+
 #endif

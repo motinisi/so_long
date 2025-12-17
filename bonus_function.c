@@ -47,7 +47,7 @@ void	level_select(char *level, t_mapdata *data)
 	if (!ft_strncmp(level, "EASY", 5))
 		data->bonus_data->enemy_speed = 10000;
 	else if (!ft_strncmp(level, "NORMAL", 7))
-		data->bonus_data->enemy_speed = 5000;
+		data->bonus_data->enemy_speed = 30;
 	else if (!ft_strncmp(level, "HARD", 5))
 		data->bonus_data->enemy_speed = 3750;
 	else if (!ft_strncmp(level, "HELL", 5))
@@ -240,7 +240,7 @@ void	bonus_function(t_mapdata *data, int argc, char *level)
 {
 	data->bonus_data = (t_bonusdata *)malloc(sizeof(t_bonusdata));
 	data->bonus_data->flag = 0;
-	data->bonus_data->enemy_speed = 20000;
+	data->bonus_data->enemy_speed = 30;
 	if (argc != 2)
 		level_select(level, data);
 	make_enemy(data);
